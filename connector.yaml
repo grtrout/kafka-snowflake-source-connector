@@ -1,0 +1,20 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: Connector
+metadata:
+  name: snowflake-jdbc-source
+  namespace: confluent
+spec:
+  class: "io.confluent.connect.jdbc.JdbcSourceConnector"
+  taskMax: 1
+  connectClusterRef:
+    name: connect
+  configs:
+    connection.url: "jdbc:snowflake://xxxxxxx-xxxxxxx.snowflakecomputing.com/?warehouse=EXAMPLEWAREHOUSE&db=EXAMPLEDB&role=PUBLIC&schema=PUBLIC&user=USER123&password=password&tracing=ALL"
+    table.whitelist: "FOO"
+    mode: "timestamp+incrementing"
+    timestamp.column.name: "UPDATE_TS"
+    incrementing.column.name: "ID"
+    topic.prefix: "snowflake-"
+    validate.non.null: "false"
+    errors.log.enable: "true"
+    errors.log.include.messages: "true"

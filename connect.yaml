@@ -1,0 +1,29 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: Connect
+metadata:
+  name: connect
+  namespace: confluent
+spec:
+  replicas: 1
+  image:
+    application: confluentinc/cp-server-connect:7.4.0
+    init: confluentinc/confluent-init-container:2.6.0
+  build:
+    type: onDemand
+    onDemand:
+      plugins:
+        locationType: url
+        url:
+          - name: "kafka-connect-jdbc"
+            archivePath: "https://bucket-name.s3.us-east-2.amazonaws.com/confluentinc-kafka-connect-jdbc-snowflake-10.7.3.zip"
+            checksum: "82cf0fe99a88318f56e37636da94af8ae24df0e89fc7e4c7c21bd459fb226a9bb95942db5a744e499ae1cd4bdf87e679a4976480a71f4e0c423ce9d88f28aa4f"
+  dependencies:
+    kafka:
+      bootstrapEndpoint: "pkc-xxxxx.us-east-2.aws.confluent.cloud:9092"
+      authentication:
+        type: plain
+        jaasConfig:
+          secretRef: "ccloud-credentials"
+      tls:
+        enabled: true
+        ignoreTrustStoreConfig: true 
