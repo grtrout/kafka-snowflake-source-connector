@@ -34,7 +34,9 @@ This step involves modifying the Confluent JDBC Connector to include the Snowfla
 
 
 ## Step 4: Create a Confluent Cloud API Key
-1. To create an API key, log on to [Confluent Cloud](https://confluent.cloud/), navigate to your cluster, and create an API key. Make sure to download the key for later reference.
+1. To create an API key, log on to [Confluent Cloud](https://confluent.cloud/), navigate to your cluster, and create an API key. Make sure to download the key for later reference.  
+![Create a Confluent Cloud API Key](/screenshots/API_Keys_Screenshot.png)
+
 
 ## Step 5: Create a Kubernetes secret with the Confluent Cloud API Key
 In this step, we'll create a Kubernetes secret to store the API key.
@@ -120,7 +122,10 @@ spec:
 Remember to replace the placeholders in the `connection.url` field with your actual Snowflake details. The `table.whitelist` field should contain the name of the table you want to use. The `timestamp.column.name` and `incrementing.column.name` fields should contain the names of the timestamp and incrementing columns, respectively. The `topic.prefix` field will be used as a prefix for the names of the topics where the data will be published. The `errors.log.enable` and `errors.log.include.messages` fields are used to enable error logging and to include error messages in the logs, respectively.
 
 ## _Optional_ - Step 8: Configure Confluent Control Center 
-Confluent Control Center provides a self-hosted Web UI for monitoring your Connect cluster and other Confluent components, including Confluent Cloud Kafka clusters. If you wish to set it up:
+Confluent Control Center provides a self-hosted Web UI for monitoring and/or managing your Connect cluster and other Confluent components, including Confluent Cloud Kafka clusters.  
+![Viewing Connectors in Confluent Control Center](/screenshots/Control_Center_Screenshot.png)
+
+If you wish to set it up:
 1. Create a new YAML file for [Control Center](https://docs.confluent.io/operator/current/co-api.html#tag/ControlCenter), as shown below.
     - The `kafka` dependency can be removed if you only need Control Center to manage the Connect cluster. In this example, the dependency is included and it uses the same API key/secret that was used by the Connect cluster.
     - The `externalAccess` section is only needed if you want to use a load balancer to access Control Center externally. If you want to get started quickly or if your Kubernetes cluster is not configured to provision `LoadBalancer` services, you can remove this entire section. Instead, you can access Control Center at `localhost:9021` in your local browser by running the following command:
