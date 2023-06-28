@@ -35,7 +35,7 @@ This step involves modifying the Confluent JDBC Connector to include the Snowfla
 
 ## Step 4: Create a Confluent Cloud API Key
 1. To create an API key, log on to [Confluent Cloud](https://confluent.cloud/), navigate to your cluster, and create an API key. Make sure to download the key for later reference.  
-![Create a Confluent Cloud API Key](/screenshots/API_Keys_Screenshot.png)
+![Create a Confluent Cloud API Key](screenshots/API_Keys_Screenshot.png)
 
 
 ## Step 5: Create a Kubernetes secret with the Confluent Cloud API Key
@@ -123,7 +123,7 @@ Remember to replace the placeholders in the `connection.url` field with your act
 
 ## _Optional_ - Step 8: Configure Confluent Control Center 
 Confluent Control Center provides a self-hosted Web UI for monitoring and/or managing your Connect cluster and other Confluent components, including Confluent Cloud Kafka clusters.  
-![Viewing Connectors in Confluent Control Center](/screenshots/Control_Center_Screenshot.png)
+![Viewing Connectors in Confluent Control Center](screenshots/Control_Center_Screenshot.png)
 
 If you wish to set it up:
 1. Create a new YAML file for [Control Center](https://docs.confluent.io/operator/current/co-api.html#tag/ControlCenter), as shown below.
